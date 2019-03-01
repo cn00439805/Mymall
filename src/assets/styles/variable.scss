@@ -1,0 +1,44 @@
+
+// common-color
+$white:    #ffffff !default;
+$gray-100: #f1f3fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000000 !default;
+
+$primary:     #ff6700 !default;
+$primary-o:   #fd9f3e !default;
+$secondary:   $gray-600 !default;
+$success:     #28a745 !default;
+$info:        #17a2b8 !default;
+$warning:     #fd9f3e !default;
+$danger:      #dc3545 !default;
+$light:       $gray-100 !default;
+$dark:        $gray-800 !default;
+
+// app
+$body-bg:     $gray-100 !default;
+$con-bg:      $white !default;
+$font:        #3c3c3c !default;
+$font-sec:    #999999 !default;
+
+$f10:         0.2rem !default;
+$f11:         0.22rem !default;
+$f12:         0.24rem !default;
+$f14:         0.28rem !default;
+$f16:         0.32rem !default;
+$f18:         0.36rem !default;
+$f20:         0.4rem !default;
+$f22:         0.44rem !default;
+$f24:         0.48rem !default;
+$f26:         0.52rem !default;
+
+$max-width:   768px;
+
+$border: 1px solid rgba(0,0,0,.15) !default;

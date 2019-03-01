@@ -1,0 +1,30 @@
+//清除浮动
+//例子：@extend %clearfix
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content:"";
+    display: table
+  }
+  &:after {
+    clear: both;
+  }
+}
+.clearfix{
+  @extend %clearfix;
+}
+
+//一行文字省略号
+//例子：@extend %text-overflow
+%text-overflow{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+//当前项目阴影
+//例子：@extend %box-shadow
+%box-shadow{
+  box-shadow: 0px 2px 3px rgba(0,0,0,.05)
+}
