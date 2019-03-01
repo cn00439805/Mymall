@@ -1,2 +1,3 @@
 # Mymall
-a project for mall
+作者：13816537099
+手机端自适应电商web 前端源码
