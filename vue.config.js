@@ -49,7 +49,7 @@ module.exports = {
   },
   chainWebpack: config => {
     //移除预加载
-    config.plugins.delete('prefetch')
+    //config.plugins.delete('prefetch')
     // 添加别名
     config.resolve.alias
      .set('@', resolve('src'))

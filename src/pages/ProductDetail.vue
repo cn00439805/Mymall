@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="detail">
+    <div class="detail" ref="detail">
       <div class="header ui-flex align-center justify-space-between">
         <a @click="goBack()" href="javascript:;" class="ui-flex align-center justify-center" ><i class="iconfont icon-xiaoyuhao"></i></a>
       </div>
@@ -16,7 +16,7 @@
         <img v-for="item,i in detail.imgs" v-lazy="item">
       </div>
     </div>
-    <div class="footer ui-flex align-center justify-space-between" v-if="isShowFooter">
+    <div class="footer ui-flex align-center justify-space-between" v-if="isShowFooter" ref="footer">
       <div class="footer-left">
         <a @click="$router.push('/home')" href="javascript:;">
           <i class="iconfont icon-home"></i>
@@ -41,7 +41,7 @@ export default {
   name: 'ProductDetail',
   data(){
     return {
-      isShowFooter:true,
+      isShowFooter:false,
       pid:this.$route.params.id,
       detail:{},
     }
@@ -52,10 +52,24 @@ export default {
     ])
   },
   created(){
-    if(this.$route.query.isHiddenFooter){
-      this.isShowFooter = false
+    if(!this.$route.query.isHiddenFooter){
+      this.isShowFooter = true
     }
     this.detail = getProductDetail(this.$route.params.id)
+  },
+  mounted(){
+    if(this.isShowFooter){
+      let footer = this.$refs.footer;
+      let container = document.querySelector(".container")
+      container.appendChild(footer)
+    }
+  },
+  beforeDestroy(){
+    if(this.isShowFooter){
+      let detail = this.$refs.detail;
+      let footer = this.$refs.footer;
+      detail.appendChild(footer)
+    }
   },
   methods:{
     goBack(){
@@ -94,7 +108,7 @@ export default {
     img{width:100%;display: block;margin-top:-0.02rem;}
   }
   .footer{
-    position:absolute;bottom:0.16rem;left:0.16rem;right:0.16rem;box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px rgba(0,0,0,.14), 0 1px 10px rgba(0,0,0,.12);background:$white;height:1.04rem;border-radius:0.16rem;border:1px solid #e5e5e5;color: $font-sec;
+    position:absolute;z-index:98;bottom:0.16rem;left:0.16rem;right:0.16rem;box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px rgba(0,0,0,.14), 0 1px 10px rgba(0,0,0,.12);background:$white;height:1.04rem;border-radius:0.16rem;border:1px solid #e5e5e5;color: $font-sec;
     .footer-left{display: flex;height:100%;padding-left:0.2rem;}
     .btn{background:$primary;color:$white;padding:0 0.48rem;height:0.6rem;line-height:0.6rem;border-radius:0.32rem;margin-right:0.2rem;font-size:$f14;border:0 none;}
     i{display: block;font-size:$f24;}

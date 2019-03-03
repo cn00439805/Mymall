@@ -1,5 +1,5 @@
 <template>
-  <div class="trolley-con">
+  <div class="trolley-con" ref="trolley_con">
     <div class="no-product" v-if="!hasChildren">
       <a href="javascript:;" @click="$router.push('home')">
         <span>购物车还是空的</span>
@@ -8,7 +8,7 @@
     </div>
     <div class="trolley-list" :class="getClass" v-if="hasChildren">
       <transition-group name="list" tag="ul">
-        <li class="ui-flex justify-start list-item" v-for="item,i in list" :key="item">
+        <li class="ui-flex justify-start list-item" v-for="item,i in list" :key="item.pid">
           <a href="javascript:;" class="img-con" @click="pageToDetail(item)">
             <img :src="item.thumbnail">
           </a>
@@ -28,7 +28,7 @@
       </transition-group>
     </div>
     <div class="trolley-list-bg-con" v-if="hasChildren"></div>
-    <div class="bottom-bar" v-if="!btmNav.isShow">
+    <div class="bottom-bar" v-if="!btmNav.isShow" ref="bottom_bar">
       <div class="ui-flex align-center">
         <div class="amount">
           <h3>共{{trolleyNumber}}件 金额：</h3>
@@ -52,6 +52,18 @@ export default {
         isShow:true
       },
     }
+  },
+  mounted(){
+    if(!this.btmNav.isShow){
+      let container = document.querySelector(".container")
+      let bottom_bar = this.$refs.bottom_bar;
+      container.appendChild(bottom_bar)
+    }
+  },
+  beforeDestroy(){
+    let trolley_con = this.$refs.trolley_con;
+    let bottom_bar = this.$refs.bottom_bar;
+    trolley_con.appendChild(bottom_bar)
   },
   computed:{
     getClass(){
